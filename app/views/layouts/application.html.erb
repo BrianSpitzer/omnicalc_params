@@ -6,13 +6,101 @@
 
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <body>
   <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <tr>
+              <th>
+                Part I Targets
+              </th>
+
+              <td>
+                <a href="/flexible/square/5">
+                  Flexible Square Example
+                </a>
+              </td>
+
+              <td>
+                <a href="/flexible/square_root/8">
+                  Flexible Square Root Example
+                </a>
+              </td>
+
+              <td>
+                <a href="/flexible/payment/410/30/250000">
+                  Flexible Payment Example
+                </a>
+              </td>
+
+              <td>
+                <a href="/flexible/random/50/100">
+                  Flexible Random Example
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <th>
+                Part II Targets
+              </th>
+
+              <td>
+                <a href="/square/new">
+                  Square Form
+                </a>
+              </td>
+
+              <td>
+                <a href="/square_root/new">
+                  Square Root Form
+                </a>
+              </td>
+
+              <td>
+                <a href="/payment/new">
+                  Payment Form
+                </a>
+              </td>
+
+              <td>
+                <a href="/random/new">
+                  Random Form
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <th>
+                Part III Targets
+              </th>
+
+              <td>
+                <a href="/word_count/new">
+                  Word Count Form
+                </a>
+              </td>
+
+              <td>
+                <a href="/descriptive_stats/new">
+                  Stats Form
+                </a>
+              </td>
+
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+
+    
     <%= yield %>
   </div>
-
+</div>
+</div>
   <div class="rails-toolbar">
     <a href="/rails/git" target="_blank" class="rails-toolbar-button">
       Git
