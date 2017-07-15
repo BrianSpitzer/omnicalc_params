@@ -35,6 +35,23 @@ class CalculationsController < ApplicationController
       render("calculations/flexible_payment_template.html.erb")
     end
     
+    def flex_random
+      first_number = params["first_value"].to_i
+      second_number = params["second_value"].to_i
+
+      if first_number <= second_number
+        @minumum = first_number
+        @maximum = second_number
+      else
+        @minimum = second_number
+        @maximum = first_number
+      end
+
+      @random_number = rand(@minimum..@maximum)
+      
+      render("calculations/flexible_random_template.html.erb")
+    end
+    
     def form_square
     
       render("calculations/form_square_template.html.erb")
