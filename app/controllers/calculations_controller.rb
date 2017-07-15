@@ -1,6 +1,6 @@
 class CalculationsController < ApplicationController
 
-  # Part I
+  # Part I methods
 
     def flex_square
         # The incoming parameters for this action look like {"number"=>"5"}
@@ -55,7 +55,7 @@ class CalculationsController < ApplicationController
       render("calculations/flexible_random_template.html.erb")
     end
     
-  # Part II
+  # Part II methods
     
     # Form version of Square 
     
@@ -129,7 +129,7 @@ class CalculationsController < ApplicationController
       render("calculations/form_random_result_template.html.erb")
     end
   
-  # Part III
+  # Part III methods
   
     # Word Count
     
