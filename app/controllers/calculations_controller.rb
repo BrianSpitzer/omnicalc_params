@@ -1,4 +1,7 @@
 class CalculationsController < ApplicationController
+
+  # Flex methods
+
     def flex_square
         # The incoming parameters for this action look like {"number"=>"5"}
         # Rails stores that hash in a variable called params
@@ -52,6 +55,10 @@ class CalculationsController < ApplicationController
       render("calculations/flexible_random_template.html.erb")
     end
     
+  #Form methods
+    
+    #Square 
+    
     def form_square
     
       render("calculations/form_square_template.html.erb")
@@ -65,6 +72,8 @@ class CalculationsController < ApplicationController
       render("calculations/form_square_result_template.html.erb")
     end
     
+    #Square Root
+    
     def form_square_root
     
       render("calculations/form_square_root_template.html.erb")
@@ -76,6 +85,25 @@ class CalculationsController < ApplicationController
       @square_root = @user_number**0.5
         
       render("calculations/form_square_root_result_template.html.erb")
+    end
+    
+    #Payment
+    
+    def form_payment
+      render("calculations/form_payment_template.html.erb")
+    end
+    
+    def form_payment_result
+
+      @apr = params["apr"].to_f / 100
+      @years = params["number_of_years"].to_f
+      @principal = params["principal"].to_f
+    
+      monthly_rate = @apr / 12 
+      number_of_payments = @years * 12
+      @monthly_payment = @principal * monthly_rate * (1 + monthly_rate)**number_of_payments / (((1+monthly_rate)**number_of_payments)-1)
+
+      render("calculations/form_payment_result_template.html.erb")
     end
     
 end
