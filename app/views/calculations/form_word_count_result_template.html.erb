@@ -1,0 +1,40 @@
+<h1>Word Count Results</h1>
+
+<dl>
+  <dt>
+    Text
+  </dt>
+  <dd>
+    <%= @text %>
+  </dd>
+
+  <dt>
+    Word count
+  </dt>
+  <dd>
+    <%= @word_count %>
+  </dd>
+  
+  <dt>
+    Character count (with spaces)
+  </dt>
+  <dd>
+    <%= @character_count_with_spaces %>
+  </dd>
+
+  <dt>
+    Character count (without spaces)
+  </dt>
+  <dd>
+    <%= @character_count_without_spaces %>
+  </dd>
+
+  <dt>
+    Occurences of <code> <%= @special_word %> </code>
+  </dt>
+  <dd>
+    <%= @occurrences %>
+  </dd>
+</dl>
+
+<a href="/word_count/new"> Process more text </a>

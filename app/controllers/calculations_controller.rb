@@ -1,6 +1,6 @@
 class CalculationsController < ApplicationController
 
-  # Flex methods
+  # Part I
 
     def flex_square
         # The incoming parameters for this action look like {"number"=>"5"}
@@ -55,13 +55,13 @@ class CalculationsController < ApplicationController
       render("calculations/flexible_random_template.html.erb")
     end
     
-  #Form methods
+  # Part II
     
-    #Form version of Square 
+    # Form version of Square 
     
     def form_square
     
-      render("calculations/form_square_template.html.erb")
+      render("calculations/form_square_new_template.html.erb")
     end
     
     def form_square_result
@@ -72,11 +72,11 @@ class CalculationsController < ApplicationController
       render("calculations/form_square_result_template.html.erb")
     end
     
-    #Form version of Square Root
+    # Form version of Square Root
     
     def form_square_root
     
-      render("calculations/form_square_root_template.html.erb")
+      render("calculations/form_square_root_new_template.html.erb")
     end
     
     def form_square_root_result
@@ -87,10 +87,10 @@ class CalculationsController < ApplicationController
       render("calculations/form_square_root_result_template.html.erb")
     end
     
-    #Form version of Payment
+    # Form version of Payment
     
     def form_payment
-      render("calculations/form_payment_template.html.erb")
+      render("calculations/form_payment_new_template.html.erb")
     end
     
     def form_payment_result
@@ -106,10 +106,10 @@ class CalculationsController < ApplicationController
       render("calculations/form_payment_result_template.html.erb")
     end
     
-    #Form version of Random
+    # Form version of Random
     
     def form_random
-      render("calculations/form_random_template.html.erb")
+      render("calculations/form_random_new_template.html.erb")
     end
     
     def form_random_result
@@ -129,5 +129,137 @@ class CalculationsController < ApplicationController
       render("calculations/form_random_result_template.html.erb")
     end
   
+  # Part III
+  
+    # Word Count
+    
+    def form_word_count
+    
+      render("calculations/form_word_count_new_template.html.erb")
+    end
+    
+    def form_word_count_result
+      @text = params[:user_text]
+      @special_word = params[:user_word]
+  
+      @word_count = @text.split.count
+  
+      @character_count_with_spaces = @text.length
+  
+      @character_count_without_spaces = @text.gsub(" ","").length
+      
+      occurred = 0
+    
+      @text.split.each do |word|
+        if word.downcase.gsub(/[^a-z0-9\s]/i, "") == @special_word.downcase
+          occurred = occurred + 1
+        end
+      end
+      
+      @occurrences = occurred
+    
+      render("calculations/form_word_count_result_template.html.erb")
+    end
+    
+    # Description Stats
+    def form_descriptive_stats
+    
+      render("calculations/form_descriptive_stats_new_template.html.erb")
+    end
+    
+    def form_descriptive_stats_result
+
+      @numbers = params[:list_of_numbers].gsub(',', '').split.map(&:to_f)
+  
+
+      @sorted_numbers = @numbers.sort
+      
+      @count = @sorted_numbers.count
+  
+      @minimum = @sorted_numbers[0]
+      
+      @maximum = @sorted_numbers[@count-1]
+  
+      @range = @maximum - @minimum
+  
+      if @count.odd?
+        @median = @sorted_numbers[@count/2]
+        elsif
+        @median = (@sorted_numbers[@count/2-1] + @sorted_numbers[@count/2])/2
+      end
+      
+      sum = 0
+  
+      @sorted_numbers.each do |number|
+        sum = sum + number
+      end
+      
+      @sum = sum
+  
+      @mean = sum/@count
+  
+      x_bar_squared = 0
+      x_bar_squared_sum = 0
+  
+      @sorted_numbers.each do |number|
+        x_bar_squared = (number - @mean)**2
+        x_bar_squared_sum += x_bar_squared
+      end
+      
+      @variance = x_bar_squared_sum / (@count)
+  
+      @standard_deviation = @variance**0.5
+  
+  
+      #count the number of occurrences of each number    
+      mode_array = []
+      loop_count = 0
+      prev_number = 0
+      
+      @sorted_numbers.each do |number|
+        if loop_count == 0
+          number_hash = { :value => number, :count => 1 }
+          mode_array.push(number_hash)
+          prev_number = number
+        elsif number == prev_number
+            mode_array.last[:count] += 1
+        else
+          number_hash = { :value => number, :count => 1 }
+          mode_array.push(number_hash)
+          prev_number = number
+        end
+      
+        loop_count += 1
+      end
+  
+      #determine the maximum number of occurrences of any value
+      maximum_count = 0
+  
+      mode_array.each do |contender|
+        if contender[:count] > maximum_count
+          maximum_count = contender[:count]
+        end
+      end 
+      
+      # Figure out how many values have the maximum count. if there's only one, it
+      # is the mode. Otherwise, any value with the maximum count is a mode.
+      
+      modes = []
+      
+      mode_array.each do |contender|
+        if contender[:count] == maximum_count
+          modes.push(contender[:value])
+        end
+      end
+    
+      if modes.count == 1
+        @mode = modes.first
+      else
+        @mode = modes
+      end
+
+    
+      render("calculations/form_descriptive_stats_result_template.html.erb")
+    end
     
 end

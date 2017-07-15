@@ -19,6 +19,13 @@ Rails.application.routes.draw do
   get("/random/new",                   { :controller => "calculations", :action => "form_random"})
   get("/random/results",               { :controller => "calculations", :action => "form_random_result"})
   
+  get("/word_count/new",               { :controller => "calculations", :action => "form_word_count"})
+  get("/word_count/results",           { :controller => "calculations", :action => "form_word_count_result"})
+  
+  get("/descriptive_stats/new",        { :controller => "calculations", :action => "form_descriptive_stats"})
+  get("/descriptive_stats/results",    { :controller => "calculations", :action => "form_descriptive_stats_result"})
+  
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   mount WebGit::Engine, at: "/rails/git"
 end
