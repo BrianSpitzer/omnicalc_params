@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get("/",                             { :controller => "calculations", :action => "form_square"})
+  
   get("/flexible/square/:number",      { :controller => "calculations", :action => "flex_square"})
   get("/flexible/square_root/:number", { :controller => "calculations", :action => "flex_square_root"})
   get("/flexible/payment/:basis_points/:number_of_years/:present_value", 
