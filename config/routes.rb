@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get("/payment/new",                  { :controller => "calculations", :action => "form_payment"})
   get("/payment/results",              { :controller => "calculations", :action => "form_payment_result"})
   
+  get("/random/new",                   { :controller => "calculations", :action => "form_random"})
+  get("/random/results",               { :controller => "calculations", :action => "form_random_result"})
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   mount WebGit::Engine, at: "/rails/git"
 end

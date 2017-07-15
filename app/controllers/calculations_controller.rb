@@ -43,7 +43,7 @@ class CalculationsController < ApplicationController
       second_number = params["second_value"].to_i
 
       if first_number <= second_number
-        @minumum = first_number
+        @minimum = first_number
         @maximum = second_number
       else
         @minimum = second_number
@@ -57,7 +57,7 @@ class CalculationsController < ApplicationController
     
   #Form methods
     
-    #Square 
+    #Form version of Square 
     
     def form_square
     
@@ -72,7 +72,7 @@ class CalculationsController < ApplicationController
       render("calculations/form_square_result_template.html.erb")
     end
     
-    #Square Root
+    #Form version of Square Root
     
     def form_square_root
     
@@ -87,7 +87,7 @@ class CalculationsController < ApplicationController
       render("calculations/form_square_root_result_template.html.erb")
     end
     
-    #Payment
+    #Form version of Payment
     
     def form_payment
       render("calculations/form_payment_template.html.erb")
@@ -105,5 +105,29 @@ class CalculationsController < ApplicationController
 
       render("calculations/form_payment_result_template.html.erb")
     end
+    
+    #Form version of Random
+    
+    def form_random
+      render("calculations/form_random_template.html.erb")
+    end
+    
+    def form_random_result
+      first_number = params["minimum"].to_f
+      second_number = params["maximum"].to_f
+
+      if first_number <= second_number
+        @minimum = first_number
+        @maximum = second_number
+      else
+        @minimum = second_number
+        @maximum = first_number
+      end
+
+      @random_number = rand(@minimum..@maximum)
+ 
+      render("calculations/form_random_result_template.html.erb")
+    end
+  
     
 end
